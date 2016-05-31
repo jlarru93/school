@@ -109,13 +109,12 @@ class student extends CI_Controller {
 				//recojer datos de la vista	
 				$studentdata=$this->input->post('data');
 				$studentdata=json_decode($studentdata,true);
-				echo "<pre>";
-				print_r($studentdata);
-				echo "</pre>";
+				//echo "<pre>";
+				//print_r($studentdata);
+				//echo "</pre>";
 				//cargar el modelo
 				$this->load->model('director/StudentModel');
-				//agregar alumno
-				//$this->StudentModel->edit($student);
+				
 				$var['data']=$studentdata;
 				$this->load->view('director/header_view');
 				$this->load->view('director/navigation_view');
@@ -130,9 +129,22 @@ class student extends CI_Controller {
 				$student['apeMaternoEstudiante']=$this->input->post('mother_last_name');//FM
 				$student['fechaNacEstudiante']=$this->input->post('Birthdate');
 				$student['sexoEstudiante']=$this->input->post('sex');//*
-				echo "<pre>";
-				print_r($student);
-				echo "</pre>";
+				$student['fotoEstudiante']="";//*
+				//echo "<pre>";
+				//print_r($student);
+				//echo "</pre>";
+
+				$var['data']=$student;
+				$this->load->model('director/StudentModel');
+				$student=json_encode($student,true);
+				$this->StudentModel->edit($student);
+
+				$this->load->view('director/header_view');
+				$this->load->view('director/navigation_view');
+				$this->load->view('director/wrapper_view');
+				$this->load->view('director/student/edit_student_view',$var);
+				$this->load->view('director/footer_view');
+
 			}
 
 			

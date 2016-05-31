@@ -44,6 +44,66 @@ class Teacher extends CI_Controller {
 
 		
 	}
+
+
+
+		public function edit()
+	{
+		//get
+		if ($this->input->server('REQUEST_METHOD') == 'GET'){
+			redirect('/Director/teacher/index');
+		}
+		//post
+		else if ($this->input->server('REQUEST_METHOD') == 'POST'){
+
+
+			if (is_null($data=$this->input->post('edit'))) 
+			{
+				//recojer datos de la vista	
+				$teacherdata=$this->input->post('data');
+				$teacherdata=json_decode($teacherdata,true);
+				echo "<pre>";
+				print_r($teacherdata);
+				echo "</pre>";
+				
+				$var['data']=$teacherdata;
+				$this->load->view('director/header_view');
+				$this->load->view('director/navigation_view');
+				$this->load->view('director/wrapper_view');
+				$this->load->view('director/teacher/edit_teacher_view',$var);
+				$this->load->view('director/footer_view');
+				
+			}else{
+				$teacher['codProfesor']=$this->input->post('cod_teacher');
+				$teacher['dirProfesor']=$this->input->post('address_street');
+				$teacher['nomProfesor']=$this->input->post('names');
+				$teacher['emailProfesor']=$this->input->post('email');
+				$teacher['telfProfesor']=$this->input->post('cellphone');
+				$teacher['apePaternoProfesor']=$this->input->post('father_last_name');
+				$teacher['apeMaternoProfesor']=$this->input->post('mother_last_name');//FM
+				$teacher['fechaNacProfesor']=$this->input->post('Birthdate');
+				$teacher['sexoProfesor']=$this->input->post('sex');//*
+				$teacher['fotoProfesor']="";//*
+				//echo "<pre>";
+				//print_r($teacher);
+				//echo "</pre>";
+				
+				$var['data']=$teacher;
+				$this->load->model('director/TeacherModel');
+				$teacher=json_encode($teacher,true);
+				$this->TeacherModel->edit($teacher);
+				
+				$this->load->view('director/header_view');
+				$this->load->view('director/navigation_view');
+				$this->load->view('director/wrapper_view');
+				$this->load->view('director/teacher/edit_teacher_view',$var);
+				$this->load->view('director/footer_view');
+				
+			}
+
+			
+		}
+	}
 	public function add()
 	{
 

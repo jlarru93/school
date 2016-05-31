@@ -35,6 +35,17 @@ class StudentModel extends CI_Model {
             return $response;
         }  
 
+ public function  edit($Student=null)
+   {
+      $ur=web_service_uri.'/estudiante/modificarEstudiante';
+      try {                 
+         $response = \Httpful\Request::put($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($Student)->send();
+         $response=json_decode($response,true);
+         return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+}   
       public function  getcourse($codstudent)
         {
             $ur=web_service_uri.'/estudiante/listarCursosWeb?codEstudiante='.$codstudent;

@@ -50,6 +50,17 @@ public function  GetAll()
     return $response;
   }
 }   
+ public function  edit($teacher=null)
+   {
+      $ur=web_service_uri.'/profesor/modificarProfesor';
+      try {                 
+         $response = \Httpful\Request::put($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($teacher)->send();
+         $response=json_decode($response,true);
+         return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+}  
 
 public function getCurses($codTeacher=null,$nivel=null){
   $ur=web_service_uri.'/profesor/listarCursosImpartidos?codProfesor='.$codTeacher.'&nivel='.$nivel;

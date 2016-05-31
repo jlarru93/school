@@ -58,5 +58,60 @@ class Course extends CI_Controller {
 
 		 }
 	}
+
+
+		public function edit()
+	{
+		$this->load->model('director/CourseModel');
+
+		if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+			redirect('/Director/course/index');
+		 }elseif ($this->input->server('REQUEST_METHOD') == 'POST') {
+		 	$varedit=$this->input->post('edit');
+
+
+		 	if ($varedit=="") 
+		 	{
+		 		$data=$this->input->post('data');
+			 	$data=json_decode($data,true);
+				 echo('<pre>');
+				 print_r($data);
+				 echo('</pre>');
+				 $var['data']=$data;
+				$this->load->view('director/header_view');
+				$this->load->view('director/navigation_view');
+				$this->load->view('director/wrapper_view');
+				$this->load->view('director/course/edit_course_view',$var);
+				$this->load->view('director/footer_view');
+		 	}else
+		 	{
+		 		$this->load->model('director/CourseModel');
+		 		$course['CodCurso']=$this->input->post('CodCourse');
+		 		$course['DescripCurso']=$this->input->post('descripCurso');
+		 		$course['CodGrado']=$this->input->post('grade').$this->input->post('nivel');
+		 		$course['ImagenCurso']="";
+		 		$course['codCurso']=$this->input->post('CodCourse');
+		 		$course['descripCurso']=$this->input->post('descripCurso');
+		 		$course['codGrado']=$this->input->post('grade').$this->input->post('nivel');
+		 		$course['imagenCurso']="";
+
+		 		$var['data']=$course;
+		 		$datas=json_encode($course,true);
+		 		//print_r($datas);
+		 		$response=$this->CourseModel->edit($datas);	
+		 		var_dump($response);
+		 		$this->load->view('director/header_view');
+				$this->load->view('director/navigation_view');
+				$this->load->view('director/wrapper_view');
+				$this->load->view('director/course/edit_course_view',$var);
+				$this->load->view('director/footer_view');
+
+		 		
+		 	}
+		 
+
+		 }
+	}
 	
 }

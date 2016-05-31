@@ -23,14 +23,25 @@ class CourseModel extends CI_Model {
     public function  add($data)
     {
         $ur=web_service_uri.'/curso/registrar';
-     try {                 
-       $response = \Httpful\Request::post($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($data)->send();
-       $response=json_decode($response,true);
-       return $response;
-   } catch (Exception $e) {
-    return 'fallo';
+        try {                 
+         $response = \Httpful\Request::post($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($data)->send();
+         $response=json_decode($response,true);
+         return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
 }
-}    
+ public function  edit($course=null)
+   {
+      $ur=web_service_uri.'/curso/modificar';
+      try {                 
+         $response = \Httpful\Request::put($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($course)->send();
+         $response=json_decode($response,true);
+         return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+}        
 
 
 }

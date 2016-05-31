@@ -47,12 +47,20 @@
                                        <?php foreach ($Courses as $key => $Course): 
                                         $nivel=substr($Course['CodGrado'], 1)=='P'?'primaria':'secundaria';
                                         $grado=substr($Course['CodGrado'], 0,1).'°';
+                                        $data='';
+                                        $data=json_encode($Course,true);
                                        ?>
                                              <tr class="gradeU">
                                             <td><?php echo $Course['DescripCurso']; ?></td>
                                             <td><?php echo $nivel; ?></td>
                                             <td><?php echo $grado; ?></td>
-                                            <td class="center"><a title="ver silabus" href="#<?php echo $Course['CodCurso']; ?>" class="btn btn-primary btn-circle" role="button"><i class="glyphicon glyphicon-check"></i></a></td>
+                                            <td class="center">
+                                            <form action="<?php echo site_url('director/course/edit'); ?>" method="post">
+                                              <a title="ver silabus" href="#<?php echo $Course['CodCurso']; ?>" class="btn btn-primary btn-circle" role="button"><i class="glyphicon glyphicon-check"></i></a>
+                                              <button class="btn btn-warning btn-circle" role="button"><i class="fa fa-edit"></i></button>    
+                                              <input type="hidden" name="data" value='<?php echo($data);?>' />    
+                                            </form>
+                                            </td>
                                         </tr>
                                        <?php endforeach ?>
                                       
@@ -74,27 +82,4 @@
         </div>
         <!-- /#page-wrapper -->
 
-        <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
+      

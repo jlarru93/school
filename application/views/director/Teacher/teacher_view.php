@@ -29,6 +29,8 @@
 
                                     <?php 
                                     foreach ($teachers as $teacher) {
+                                        $data='';
+                                        $data=json_encode($teacher,true);
                                         $fullname=$teacher['nomProfesor'].' '.$teacher['apePaternoProfesor'].' '.$teacher['apeMaternoProfesor'];
                                         $link1=site_url('Director/Teacher/course_teacher/'.$teacher['codProfesor']);
 
@@ -60,11 +62,16 @@
                                                 ?>
                                             </td>
                                             <td class="center">
-                                                <a href="<?php echo $link1; ?>" class="btn btn-primary btn-circle" role="button"><i class="glyphicon glyphicon-check"></i></a>
-                                                <a href="<?php echo $link2; ?>" class="btn btn-success btn-circle" role="button"><i class="fa fa-arrows-h"></i></a>                                                
-                                                <a href="<?php echo '#'; ?>" class="btn btn-info btn-circle" role="button"><i class="fa fa-check"></i></a> 
-                                                <a href="<?php echo '#'; ?>" class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a> 
-                                                
+                                                <form action="<?php echo site_url('director/teacher/edit'); ?>" method="post">
+                                               
+                                                    <a href="<?php echo $link1; ?>" class="btn btn-primary btn-circle" role="button"><i class="glyphicon glyphicon-check"></i></a>
+                                                    <a href="<?php echo $link2; ?>" class="btn btn-success btn-circle" role="button"><i class="fa fa-arrows-h"></i></a>                                                
+                                                    <button class="btn btn-warning btn-circle" role="button"><i class="fa fa-edit"></i></button>    
+                                                    <input type="hidden" name="data" value='<?php echo($data);?>' /> 
+
+                                                    <a href="<?php echo '#'; ?>" class="btn btn-info btn-circle" role="button"><i class="fa fa-check"></i></a> 
+                                                    <a href="<?php echo '#'; ?>" class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a> 
+                                                </form>   
                                             </td>
                                         </tr>
                                       <?php   }?>
