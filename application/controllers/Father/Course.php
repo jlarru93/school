@@ -61,7 +61,7 @@ class Course extends CI_Controller {
 	}
 
 
-		public function Score()
+	public function Score()
 	{
 		if ($this->input->server('REQUEST_METHOD') == 'GET')
 		{
@@ -72,7 +72,7 @@ class Course extends CI_Controller {
 
 			$response=json_decode($this->input->post('codEstudiante'),true);
 			
-				$this->load->model('father/CourseModel');
+			$this->load->model('father/CourseModel');
 			$codEstudiante=$response['idStudent'];
 			$codCurso=$response['idCourse'];
 			$trimestre=$response['trimestre'];

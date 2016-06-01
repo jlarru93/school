@@ -114,4 +114,46 @@ class Course extends CI_Controller {
 		 }
 	}
 	
+	public  function enabled()
+	{
+			if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codCurso=$this->input->post('codCurso');
+			
+			$this->load->model('director/CourseModel');
+
+			$response=$this->CourseModel->enabled($codCurso);	
+
+			echo $response['resultado'];
+		}
+		
+	}
+	public  function disabled()
+	{
+		if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codCurso=$this->input->post('codCurso');
+			
+			$this->load->model('director/CourseModel');
+
+			$response=$this->CourseModel->disabled($codCurso);	
+			//$response=json_decode($response,true);
+
+			echo $response['resultado'];
+		}
+		
+	}
+
 }

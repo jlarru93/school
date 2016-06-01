@@ -96,17 +96,7 @@ results.forEach( function( item ) {
 
 
 
-
-
-
-
-
-
-
-
 });
-
-
             request.fail(function(jqXHR,TextStatus,thrown){
                 console.log('Error hh '+TextStatus);
          });

@@ -41,7 +41,30 @@ class CourseModel extends CI_Model {
      } catch (Exception $e) {
         return 'fallo';
     }
-}        
+} 
+ public function  enabled($course=null)
+     {
+     $ur=web_service_uri.'/curso/eliminar?codCurso='.$course.'&activado=true';
+      try {                 
+        $response = \Httpful\Request::delete($ur)->send();
+        $response=json_decode($response,true);
+        return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+    }  
+ public function  disabled($course=null)
+   {
+      $ur=web_service_uri.'/curso/eliminar?codCurso='.$course.'&activado=false';
+      try {                 
+        $response = \Httpful\Request::delete($ur)->send();
+         $response=json_decode($response,true);
+         return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+     
+    }         
 
 
 }

@@ -40,10 +40,11 @@
                                             <th>nombre</th>
                                             <th>nivel</th>
                                             <th>grado</th>
-                                            <th>ver silabus</th>
+                                            <th>acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php print_r($Courses[0]); ?>
                                        <?php foreach ($Courses as $key => $Course): 
                                         $nivel=substr($Course['CodGrado'], 1)=='P'?'primaria':'secundaria';
                                         $grado=substr($Course['CodGrado'], 0,1).'°';
@@ -56,9 +57,18 @@
                                             <td><?php echo $grado; ?></td>
                                             <td class="center">
                                             <form action="<?php echo site_url('director/course/edit'); ?>" method="post">
-                                              <a title="ver silabus" href="#<?php echo $Course['CodCurso']; ?>" class="btn btn-primary btn-circle" role="button"><i class="glyphicon glyphicon-check"></i></a>
+                                             <!--  <a title="ver silabus" href="#<?php echo $Course['CodCurso']; ?>" class="btn btn-primary btn-circle" role="button"><i class="glyphicon glyphicon-check"></i></a>-->
                                               <button class="btn btn-warning btn-circle" role="button"><i class="fa fa-edit"></i></button>    
-                                              <input type="hidden" name="data" value='<?php echo($data);?>' />    
+                                              <input type="hidden" name="data" value='<?php echo($data);?>' />   
+                                            
+                                              <?php if ($Course['EstadoCurso']=='1' ): ?>
+                                              <a id="<?php echo $Course['CodCurso'];?>" onclick="desactivar_curso('<?php echo $Course['CodCurso'] ;?>',this);" title="desactivar"  class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a>     
+                                              <?php else: ?>
+                                              <a id="<?php echo $Course['CodCurso'];?>" onclick="activar_curso('<?php echo $Course['CodCurso'] ;?>',this);"  title="activar"  class="btn btn-info btn-circle" role="button"><i  class="fa fa-check"></i></a>   
+                                              <?php endif ?>
+                                              
+                                              
+                                           
                                             </form>
                                             </td>
                                         </tr>
