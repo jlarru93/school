@@ -350,5 +350,46 @@ private function validaar_cursos_secundaria($couseHigh=null,$couses_teacher=null
 		$this->load->view('director/footer_view');
 		
 	}
+		public  function enabled()
+	{
+			if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codProfesor=$this->input->post('codProfesor');
+			
+			$this->load->model('director/TeacherModel');
+
+			$response=$this->TeacherModel->enabled($codProfesor);	
+
+			echo $response['resultado'];
+		}
+		
+	}
+	public  function disabled()
+	{
+		if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codProfesor=$this->input->post('codProfesor');
+			
+			$this->load->model('director/TeacherModel');
+
+			$response=$this->TeacherModel->disabled($codProfesor);	
+			//$response=json_decode($response,true);
+
+			echo $response['resultado'];
+		}
+		
+	}
 	
 }

@@ -262,4 +262,46 @@ class Father extends CI_Controller {
 }
 
 
+	public  function enabled()
+	{
+			if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codApoderado=$this->input->post('codApoderado');
+			
+			$this->load->model('director/FatherModel');
+
+			$response=$this->FatherModel->enabled($codApoderado);	
+
+			echo $response['resultado'];
+		}
+		
+	}
+	public  function disabled()
+	{
+		if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codApoderado=$this->input->post('codApoderado');
+			
+			$this->load->model('director/FatherModel');
+
+			$response=$this->FatherModel->disabled($codApoderado);	
+			//$response=json_decode($response,true);
+
+			echo $response['resultado'];
+		}
+		
+	}
+
 }

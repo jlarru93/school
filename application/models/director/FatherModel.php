@@ -48,27 +48,28 @@ public function  GetAll()
         return $response;
     }
 }
- public function  enabled($course=null)
-   {
-      $ur=web_service_uri.'/curso/enabled';
+ public function  enabled($apoderado=null)
+     {
+     $ur=web_service_uri.'/apoderado/eliminarApoderado?codApoderado='.$apoderado.'&activado=true';
       try {                 
-         $response = \Httpful\Request::put($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($course)->send();
+        $response = \Httpful\Request::delete($ur)->send();
+        $response=json_decode($response,true);
+        return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+    }  
+ public function  disabled($apoderado=null)
+   {
+      $ur=web_service_uri.'/apoderado/eliminarApoderado?codApoderado='.$apoderado.'&activado=false';
+      try {                 
+        $response = \Httpful\Request::delete($ur)->send();
          $response=json_decode($response,true);
          return $response;
      } catch (Exception $e) {
         return 'fallo';
     }
-}
- public function  disabled($course=null)
-   {
-      $ur=web_service_uri.'/curso/disabled';
-      try {                 
-         $response = \Httpful\Request::put($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($course)->send();
-         $response=json_decode($response,true);
-         return $response;
-     } catch (Exception $e) {
-        return 'fallo';
-    }
-}  
+     
+    }  
 
 }

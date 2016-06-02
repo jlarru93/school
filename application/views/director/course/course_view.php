@@ -44,7 +44,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php print_r($Courses[0]); ?>
+                                    <?php  ?>
                                        <?php foreach ($Courses as $key => $Course): 
                                         $nivel=substr($Course['CodGrado'], 1)=='P'?'primaria':'secundaria';
                                         $grado=substr($Course['CodGrado'], 0,1).'°';

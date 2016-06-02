@@ -68,9 +68,13 @@
                                                     <a href="<?php echo $link2; ?>" class="btn btn-success btn-circle" role="button"><i class="fa fa-arrows-h"></i></a>                                                
                                                     <button class="btn btn-warning btn-circle" role="button"><i class="fa fa-edit"></i></button>    
                                                     <input type="hidden" name="data" value='<?php echo($data);?>' /> 
-
-                                                    <a href="<?php echo '#'; ?>" class="btn btn-info btn-circle" role="button"><i class="fa fa-check"></i></a> 
-                                                    <a href="<?php echo '#'; ?>" class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a> 
+                                                    <?php if ($teacher['EstadoProfesor']=='1'): ?>                                                        
+                                                    <a id="<?php echo $teacher['codProfesor'];?>" onclick="desactivar_profesor('<?php echo $teacher['codProfesor'] ;?>',this);" class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a> 
+                                                    <?php else: ?>
+                                                    <a id="<?php echo $teacher['codProfesor'];?>" onclick="activar_profesor('<?php echo $teacher['codProfesor'] ;?>',this);" class="btn btn-info btn-circle" role="button"><i class="fa fa-check"></i></a>     
+                                                    <?php endif ?>
+                                                    
+                                                    
                                                 </form>   
                                             </td>
                                         </tr>
@@ -91,28 +95,3 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
-        <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>

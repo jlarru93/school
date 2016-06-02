@@ -76,28 +76,29 @@ public function getCurses($codTeacher=null,$nivel=null){
   }
 
 }
-public function  enabled($course=null)
-{
-  $ur=web_service_uri.'/curso/enabled';
-  try {                 
-   $response = \Httpful\Request::put($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($course)->send();
-   $response=json_decode($response,true);
-   return $response;
- } catch (Exception $e) {
-  return 'fallo';
-}
-}
-public function  disabled($course=null)
-{
-  $ur=web_service_uri.'/curso/disabled';
-  try {                 
-   $response = \Httpful\Request::put($ur)->addHeader('Content-Type', 'application/json;charset=UTF-8')->body($course)->send();
-   $response=json_decode($response,true);
-   return $response;
- } catch (Exception $e) {
-  return 'fallo';
-}
-}    
+ public function  enabled($codTeacher=null)
+     {
+     $ur=web_service_uri.'/profesor/eliminarProfesor?codProfesor='.$codTeacher.'&activado=true';
+      try {                 
+        $response = \Httpful\Request::delete($ur)->send();
+        $response=json_decode($response,true);
+        return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+    }  
+ public function  disabled($codTeacher=null)
+   {
+      $ur=web_service_uri.'/profesor/eliminarProfesor?codProfesor='.$codTeacher.'&activado=false';
+      try {                 
+        $response = \Httpful\Request::delete($ur)->send();
+         $response=json_decode($response,true);
+         return $response;
+     } catch (Exception $e) {
+        return 'fallo';
+    }
+     
+    }    
 
 
 }

@@ -21,7 +21,7 @@
                                             <th>Nombre</th>
                                             <th>telefono</th>
                                             <th>direccion</th>
-                                            <th>Engine version</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,8 +60,14 @@
 
                                                 
                                                 <a href="<?php echo site_url('student/relation_father_student'); ?>" class="btn btn-success btn-circle" role="button"><i class="fa fa-arrows-h"></i></a>             
-                                                <a href="<?php echo '#'; ?>" class="btn btn-info btn-circle" role="button"><i class="fa fa-check"></i></a> 
-                                                <a href="<?php echo '#'; ?>" class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a>
+                                                <?php if ($father['EstadoApoderado']=='1' ): ?>
+                                                <a  id="<?php echo $father['codApoderado'];?>" onclick="desactivar_apoderado('<?php echo $father['codApoderado'] ;?>',this);" class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a>     
+                                                <?php else: ?>
+                                                <a  id="<?php echo $father['codApoderado'];?>" onclick="activar_apoderado('<?php echo $father['codApoderado'] ;?>',this);" class="btn btn-info btn-circle" role="button"><i class="fa fa-check"></i></a>    
+                                                <?php endif ?>
+
+                                                
+                                                
                                                 </form>
                                             </td>
                                         </tr>

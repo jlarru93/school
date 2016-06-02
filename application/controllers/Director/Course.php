@@ -100,7 +100,7 @@ class Course extends CI_Controller {
 		 		$datas=json_encode($course,true);
 		 		//print_r($datas);
 		 		$response=$this->CourseModel->edit($datas);	
-		 		var_dump($response);
+		 		
 		 		$this->load->view('director/header_view');
 				$this->load->view('director/navigation_view');
 				$this->load->view('director/wrapper_view');

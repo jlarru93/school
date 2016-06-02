@@ -28,11 +28,12 @@
                                     <tbody>
                                     <?php  //var_dump($alumnos[1]);?>
                                <?php foreach ($alumnos as $alumno) { 
-                                    $data='';
+                                            $data='';
+                                            $estado=$alumno['estudiante']['EstadoEstudiante'];
                                             $data=json_encode($alumno['estudiante'],true);
                                 ?>
                                     
-                                        <tr class="gradeA" onclick="location='<?php echo site_url('Director/student/index'); ?>'">
+                                        <tr class="gradeA" >
                                             <td class="center">
                                             <?php // nombre del alumno;
                                               echo  $alumno['estudiante']['nomEstudiante'].
@@ -64,8 +65,13 @@
                                                 <input type="hidden" name="data" value='<?php echo($data);?>' />    
 
                                                 <a title="asociar con apoderado" href="<?php echo site_url('Director/student/relation_father_student'); ?>" class="btn btn-success btn-circle" role="button"><i class="fa fa-arrows-h"></i></a>            
-                                                <a title="activar" href="<?php echo site_url('Director/student/add_student'); ?>" class="btn btn-info btn-circle" role="button"><i class="fa fa-check"></i></a> 
-                                                <a title="desactivar" href="<?php echo site_url('Director/student/add_student'); ?>" class="btn btn-danger btn-circle" role="button"><i class="fa fa-times"></i></a> 
+                                                <?php if ($estado=='1'): ?>
+                                                <a id="<?php echo $alumno['estudiante']['codEstudiante'];?>" onclick="desactivar_alumno('<?php echo $alumno['estudiante']['codEstudiante'] ;?>',this);" class="btn btn-danger btn-circle" role="button" title="activar"><i class="fa fa-times"></i></a>     
+                                                <?php else: ?>
+                                                <a id="<?php echo $alumno['estudiante']['codEstudiante'];?>" onclick="activar_alumno('<?php echo $alumno['estudiante']['codEstudiante'] ;?>',this);" class="btn btn-info btn-circle" role="button" title="desactivar"><i class="fa fa-check"></i></a>     
+                                                <?php endif ?>
+                                                
+                                                
                                             </form>    
                                             </td>
                                         </tr>

@@ -26,9 +26,9 @@ class student extends CI_Controller {
 
 		//cargando vistas
 		$alumnos=$this->StudentModel->getall();
-		// echo('<pre>');
-		// print_r($alumnos);
-		// echo('</pre>');
+		 //echo('<pre>');
+		// print_r($alumnos[0]);
+		 //echo('</pre>');
 		$alumnos['alumnos']=$alumnos;
 		$alumnos['search']=$search;
 		$this->load->view('director/header_view');
@@ -192,5 +192,47 @@ class student extends CI_Controller {
 
 
 		}
+	}
+
+		public  function enabled()
+	{
+			if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codEstudiante=$this->input->post('codEstudiante');
+			
+			$this->load->model('director/StudentModel');
+
+			$response=$this->StudentModel->enabled($codEstudiante);	
+
+			echo $response['resultado'];
+		}
+		
+	}
+	public  function disabled()
+	{
+		if ($this->input->server('REQUEST_METHOD') == 'GET')
+		{
+
+			//echo  ;
+		}
+		else if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+
+			$codEstudiante=$this->input->post('codEstudiante');
+			
+			$this->load->model('director/StudentModel');
+
+			$response=$this->StudentModel->disabled($codEstudiante);	
+			//$response=json_decode($response,true);
+
+			echo $response['resultado'];
+		}
+		
 	}
 }

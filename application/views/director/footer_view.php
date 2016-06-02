@@ -180,6 +180,284 @@
 
 </script>
 
+<script>
+    function desactivar_apoderado(id,boton){
+      // console.log(id);
+        var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/Director/Father/disabled');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"codApoderado="+id
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            console.log(response);
+            var results=response;
+            //console.log(boton);
+            if (results=='Desactivado') {
+                $(boton).removeClass('btn btn-danger btn-circle');
+                $(boton).addClass('btn btn-info btn-circle');
+                $(boton).removeAttr("onclick");
+                var id=$(boton).attr("id");
+               // console.log(id);
+                $(boton).attr("onclick","activar_apoderado('"+id+"',this);");
+                boton.innerHTML = '';
+                $(boton).append( "<i class='fa fa-check'></i>" );
+            }
+            
+          
+
+            
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();
+    }
+
+</script>
+<script>
+    function activar_apoderado(id,boton){
+      // console.log(id);
+        var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/Director/Father/enabled');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"codApoderado="+id
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            console.log(response);
+            var results=response;
+            //console.log(boton);
+            if (results=='Activado') {
+                $(boton).removeClass('btn btn-info btn-circle');
+                $(boton).addClass('btn btn-danger btn-circle');
+                $(boton).removeAttr("onclick");
+                var id=$(boton).attr("id");
+                //console.log(id);
+                $(boton).attr("onclick","desactivar_apoderado('"+id+"',this);");
+                boton.innerHTML = '';
+                $(boton).append( "<i class='fa fa-times'></i>" );
+            }
+            
+          
+
+            
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();
+    }
+
+</script>
+
+
+<script>
+    function desactivar_profesor(id,boton){
+      // console.log(id);
+        var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/Director/teacher/disabled');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"codProfesor="+id
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            console.log(response);
+            var results=response;
+            //console.log(boton);
+            if (results=='Desactivado') {
+                $(boton).removeClass('btn btn-danger btn-circle');
+                $(boton).addClass('btn btn-info btn-circle');
+                $(boton).removeAttr("onclick");
+                var id=$(boton).attr("id");
+               // console.log(id);
+                $(boton).attr("onclick","activar_profesor('"+id+"',this);");
+                boton.innerHTML = '';
+                $(boton).append( "<i class='fa fa-check'></i>" );
+            }
+            
+          
+
+            
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();
+    }
+
+</script>
+<script>
+    function activar_profesor(id,boton){
+      // console.log(id);
+        var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/Director/teacher/enabled');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"codProfesor="+id
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            console.log(response);
+            var results=response;
+            //console.log(boton);
+            if (results=='Activado') {
+                $(boton).removeClass('btn btn-info btn-circle');
+                $(boton).addClass('btn btn-danger btn-circle');
+                $(boton).removeAttr("onclick");
+                var id=$(boton).attr("id");
+                //console.log(id);
+                $(boton).attr("onclick","desactivar_profesor('"+id+"',this);");
+                boton.innerHTML = '';
+                $(boton).append( "<i class='fa fa-times'></i>" );
+            }
+            
+          
+
+            
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();
+    }
+
+</script>
+<script>
+    function desactivar_alumno(id,boton){
+      // console.log(id);
+        var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/Director/Student/disabled');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"codEstudiante="+id
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            console.log(response);
+            var results=response;
+            //console.log(boton);
+            if (results=='Desactivado') {
+                $(boton).removeClass('btn btn-danger btn-circle');
+                $(boton).addClass('btn btn-info btn-circle');
+                $(boton).removeAttr("onclick");
+                var id=$(boton).attr("id");
+               // console.log(id);
+                $(boton).attr("onclick","activar_alumno('"+id+"',this);");
+                boton.innerHTML = '';
+                $(boton).append( "<i class='fa fa-check'></i>" );
+            }
+            
+          
+
+            
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();
+    }
+
+</script>
+<script>
+    function activar_alumno(id,boton){
+      // console.log(id);
+        var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/Director/Student/enabled');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"codEstudiante="+id
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            console.log(response);
+            var results=response;
+            //console.log(boton);
+            if (results=='Activado') {
+                $(boton).removeClass('btn btn-info btn-circle');
+                $(boton).addClass('btn btn-danger btn-circle');
+                $(boton).removeAttr("onclick");
+                var id=$(boton).attr("id");
+                //console.log(id);
+                $(boton).attr("onclick","desactivar_alumno('"+id+"',this);");
+                boton.innerHTML = '';
+                $(boton).append( "<i class='fa fa-times'></i>" );
+            }
+            
+          
+
+            
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();
+    }
+
+</script>
 
 <script>
 
