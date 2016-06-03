@@ -52,6 +52,27 @@ class Report extends CI_Controller
 			echo('</pre>');
 		}
 	}
+	public function progresoPorSeccion() {
+		if ($this->input->server('REQUEST_METHOD') == 'POST')
+		{
+			$this->load->model('master/ReportModel');
+			$trimestre=$this->input->post('trimestre');
+			$teacher=json_decode($_COOKIE["user_data_cookie"],true);
+			//$teacherid=$teacher['codProfesor'];
+			$teacherid='P00017';
+			$response=json_encode($this->ReportModel->progresoPorSeccion($trimestre,$teacherid),true);
+			print_r($response);
+			
+		}else {
+			$this->load->model('master/ReportModel');
+			$teacher=json_decode($_COOKIE["user_data_cookie"],true);
+			$teacherid=$teacher['codProfesor'];
+			echo('<pre>');
+			$data=$this->ReportModel->progresoPorSeccion(2,'P00017');
+			print_r($data);
+			echo('</pre>');
+		}
+	}
 
 
 }

@@ -32,6 +32,44 @@
 
 
     <?php if ($Report=='Report'): ?>
+
+
+  <script>
+  function selection_form(form){
+    //seleciono aprobados_desaprobados
+    if (form==1) {
+        var dhtml='<div class="form-group">'+
+                '<label>Trimestre</label>'+
+                    '<select onChange="crear_pastel(this.selectedIndex);" class="form-control" name="gender">'+
+                        '<option>Seleccionar trimestre</option><option value="1">Primero</option><option value="2">Segundo</option><option value="3">tercero</option>'+
+                    '</select>'+
+                '</div>';
+        document.getElementById("form").innerHTML='';
+        var masterForm = document.getElementById("form");
+        var d = document.createElement("div");
+        d.innerHTML=dhtml;
+        masterForm.appendChild(d);
+
+
+
+    }
+    //seleciono progrecion
+    else if(form==2){
+        var dhtml='<div class="form-group">'+
+                '<label>Trimestres</label>'+
+                    '<select onChange="crear_pastel_progreso(this.selectedIndex);" class="form-control" name="gender">'+
+                        '<option>Seleccionar trimestre</option><option value="1">Primero</option><option value="2">Segundo</option><option value="3">tercero</option>'+
+                    '</select>'+
+                '</div>';
+        document.getElementById("form").innerHTML='';
+        var masterForm = document.getElementById("form");
+        var d = document.createElement("div");
+        d.innerHTML=dhtml;
+        masterForm.appendChild(d);
+    };
+
+  }
+  </script>      
   
   <script>
     function pastel(curso,name){
@@ -79,7 +117,83 @@
                     data: parseInt(value['Desaprobados'])
                 }];
                 var masterCake = document.getElementById("cake");
-                var pastelnuevo=pastel(value['DescripCurso'],index+'cake');
+                var grado=value['CodGrado'].substring(0,1);
+                var nivel=value['CodGrado'].substring(1,2)=='S'?'Secundatia':'Primaria';
+                var seccion=value['NomSeccion'];
+                var turno=value['Turno'];
+                var curso=value['DescripCurso'];                    
+                var title= curso+' '+grado+' '+'"'+seccion+'"'+' turno '+turno +' '+ nivel;
+                var pastelnuevo=pastel(title,index+'cake');
+                var d = document.createElement("div");
+                d.innerHTML=pastelnuevo;
+                masterCake.appendChild(d);
+
+                pastelero(data,index+'cake');
+            });
+
+            
+          
+
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();       
+       };
+        
+    }
+
+</script>
+<script>
+    function crear_pastel_progreso(trimestre){
+        //console.log(trimestre);
+       if (trimestre!=0) {
+            var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/master/Report/progresoPorSeccion');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"trimestre="+(trimestre)
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            
+            var results=response;
+            
+            var objet=JSON.parse(results);
+            console.log(objet);
+            var datospastel=[];
+            document.getElementById("cake").innerHTML='';
+            $.each(objet,function(index,value){
+                
+
+                var data = [{
+                    label: "Logrado",
+                    data: parseInt(value['Logrado'])
+                }, {
+                    label: "Proceso",
+                    data: parseInt(value['Proceso'])
+                }, {
+                    label: "Deficiente",
+                    data: parseInt(value['Deficiente'])
+                }];
+                var masterCake = document.getElementById("cake");
+                var grado=value['CodGrado'].substring(0,1);
+                var nivel=value['CodGrado'].substring(1,2)=='S'?'Secundatia':'Primaria';
+                var seccion=value['NomSeccion'];
+                var turno=value['Turno'];
+                var curso=value['DescripCurso'];                    
+                var title= curso+' '+grado+' '+'"'+seccion+'"'+' turno '+turno +' '+ nivel;
+                var pastelnuevo=pastel(title,index+'cake');
                 var d = document.createElement("div");
                 d.innerHTML=pastelnuevo;
                 masterCake.appendChild(d);
@@ -115,8 +229,6 @@
         label: "Desaprobados",
         data: 1.5
     }];*/
-    console.log(data);
-
     var plotObj = $.plot($("#"+name), data, {
         series: {
             pie: {

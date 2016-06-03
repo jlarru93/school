@@ -21,15 +21,19 @@
                             <div class="col-lg-6">
                                 <form>
                                     <div class="form-group">
-                                        <label>Trimestre</label>
-                                        <select onChange="crear_pastel(this.selectedIndex);" class="form-control" name="gender">
+                                        <label>tipo de reporte</label>
+                                        <select onChange="selection_form(this.selectedIndex);" class="form-control" name="gender">
                                             <option>Seleccionar trimestre</option>
-                                            <option value="1">Primero</option>
-                                            <option value="2">Segundo</option>
-                                            <option value="3">Tercero</option>
+                                            <option value="1">aprobados_desaprobados</option>
+                                            <option value="2">progrecion</option>
                                         </select>
 
                                     </div> 
+                                </form>
+                            </div>
+                            <div class="col-lg-6" >
+                                <form id='form'>
+                                     
                                 </form>
                             </div>
                         </div>
