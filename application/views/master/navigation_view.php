@@ -102,6 +102,9 @@
                         </li>
                         <li>
                             <a href="<?php echo site_url('master/classroom/index');?>"><i class="fa fa-dashboard fa-fw"></i> Aulas</a>
+                        </li>  
+                        <li>
+                            <a href="<?php echo site_url('master/Report/index');?>"><i class="fa fa-dashboard fa-fw"></i> Reportes</a>
                         </li>
 
                     </ul>

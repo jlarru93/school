@@ -22,6 +22,9 @@
     <script src="<?php echo base_url() ;?>/js/bootstrap-datepicker.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+
+
     
     <!-- datepicker -->
     <script>
@@ -32,8 +35,6 @@
             
         });
     </script>
-
-
 
     <!-- tablas busquedas -->
     <script>
@@ -606,6 +607,6 @@
         function filtro(mensaje){
            $('#dataTables-example').DataTable().search(mensaje).draw();fin
        }
-   </script>>
+   </script>
 
 

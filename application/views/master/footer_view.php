@@ -22,6 +22,124 @@
     <script src="<?php echo base_url() ;?>/js/bootstrap-datepicker.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+     <!-- Flot Charts JavaScript -->
+    <script src="<?php echo base_url() ;?>/bower_components/flot/excanvas.min.js"></script>
+    <script src="<?php echo base_url() ;?>/bower_components/flot/jquery.flot.js"></script>
+    <script src="<?php echo base_url() ;?>/bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="<?php echo base_url() ;?>/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="<?php echo base_url() ;?>/bower_components/flot/jquery.flot.time.js"></script>
+    <script src="<?php echo base_url() ;?>/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+
+
+    <?php if ($Report=='Report'): ?>
+  
+  <script>
+    function pastel(curso,name){
+        var htmlpastel='<div class="panel panel-default">'+
+                        '<div class="panel-heading">'+   curso+
+                        '</div>'+
+                        '<div class="panel-body">'+
+                            '<div class="flot-chart">'+
+                                '<div class="flot-chart-content" id="'+name+'"></div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+             return  htmlpastel;    
+    }
+    </script>
+<script>
+    function crear_pastel(trimestre){
+       if (trimestre!=0) {
+            var request;
+        if (request) {
+            request.abort();
+        };
+        request=$.ajax({
+            url:"<?php echo base_url('/master/Report/aprobados_profesor');?>" ,
+            type:"POST",
+                //contentType: "application/json; charset=utf-8",
+              //  dataType: "json",
+            data:"trimestre="+(trimestre)
+            });
+
+        request.done(function(response,TextStatus,jqXHR){
+            
+            var results=response;
+            var objet=JSON.parse(results);
+            var datospastel=[];
+            document.getElementById("cake").innerHTML='';
+            $.each(objet,function(index,value){
+                console.log(value);
+
+                var data = [{
+                    label: "Aprobados",
+                    data: parseInt(value['Aprobados'])
+                }, {
+                    label: "Desaprobados",
+                    data: parseInt(value['Desaprobados'])
+                }];
+                var masterCake = document.getElementById("cake");
+                var pastelnuevo=pastel(value['DescripCurso'],index+'cake');
+                var d = document.createElement("div");
+                d.innerHTML=pastelnuevo;
+                masterCake.appendChild(d);
+
+                pastelero(data,index+'cake');
+            });
+
+            
+          
+
+        });
+        request.fail(function(jqXHR,TextStatus,thrown){
+            console.log('Error hh '+TextStatus);
+        });
+
+        request.always(function(){
+            console.log('termino');
+        });
+
+        //e.preventDefault();       
+       };
+        
+    }
+
+</script>
+
+    <script>
+    function pastelero(data,name) {
+   /* var data = [{
+        label: "Aprobados",
+        data: 3.5
+    }, {
+        label: "Desaprobados",
+        data: 1.5
+    }];*/
+    console.log(data);
+
+    var plotObj = $.plot($("#"+name), data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
+}
+</script>
+<?php endif ?>
     <script>
         $(document).ready(function() {
             $('#dataTables-alumno-apoderado').DataTable({

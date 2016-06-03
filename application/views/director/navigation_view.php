@@ -248,61 +248,11 @@
                         <li>
                             <a href="<?php echo site_url('director/father/index');?>"><i class="fa fa-wrench fa-fw"></i> Padres</a>  
                         </li>
-                           <li>
+                        <li>
                             <a href="<?php echo site_url('director/student/enrollment');?>"><i class="fa fa-wrench fa-fw"></i> Matriculas</a>  
                         </li>
                           <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Niveles<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">                              
-                                <li>
-                                    <a href="#">Primaria<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a onclick="filtro('Primero primaria');"  >Primero</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('segundo primaria');" >Segundo</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Tercero primaria');">Tercero</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Cuarto primaria');">Cuarto</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Quinto primaria');">Quinto</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Sexto primaria');">Sexto</a>
-                                        </li>
-                                    </ul>
-                              
-                                    <!-- /.nav-third-level -->
-                                </li>
-                                 <li>
-                                    <a href="#">Secundaria <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                         <li>
-                                            <a onclick="filtro('Primero Secundaria');">Primero</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Segundo Secundaria');">Segundo</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Tercero Secundaria');">Tercero</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Cuarto Secundaria');">Cuarto</a>
-                                        </li>
-                                        <li>
-                                            <a onclick="filtro('Quinto Secundaria');">Quinto</a>
-                                        </li>
-                                    
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-
-                            </ul>
+                            <a href="<?php echo site_url('director/Report/index');?>"><i class="fa fa-wrench fa-fw"></i> Reportes</a>  
                             <!-- /.nav-second-level -->
                         </li>
                       
